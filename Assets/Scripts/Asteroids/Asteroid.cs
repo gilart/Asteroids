@@ -12,8 +12,14 @@ public class Asteroid : MonoBehaviour
 
     private Vector3 dir;
 
+    AudioSource source;
+    [SerializeField] AudioClip clip;
+    [SerializeField] ParticleSystem Explosion;
+
     private void Start()
     {
+        source = GetComponent<AudioSource>();
+
         do
         {
             dir = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
@@ -32,7 +38,12 @@ public class Asteroid : MonoBehaviour
 
     public virtual void BeforeDestroy()
     {
-        //add points etc.
+        AudioSource.PlayClipAtPoint(clip, transform.position);
+
+        Explosion.Play();
+        Explosion.transform.parent = null;
+
+        GameManager.Instance.UpdateHUDScore(score);
         OnAsteroidDestroy?.Invoke(this);
     }
 

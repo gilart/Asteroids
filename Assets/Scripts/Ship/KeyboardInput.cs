@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyboardInput : InputBase
-{
+{  
     protected override void ProcessRotation()
     {
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -21,6 +21,10 @@ public class KeyboardInput : InputBase
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             this.Move();
+        }
+        else
+        {
+            this.StopMoving();
         }
     }
 

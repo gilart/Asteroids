@@ -3,18 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipManager
+public class ShipManager : MonoBehaviour
 {
     CollisionHandler shipCollision;
 
-    public GameObject shipInstance;
+    private GameObject shipInstance;
 
-    [SerializeField]private int lives = 3;
+    [SerializeField] private GameObject shipPrefab;
+
+    [SerializeField] private int lives = 3;
+
+    //SFX
+    [SerializeField] private AudioClip respawn;
+    AudioSource source;
 
     public void Setup()
     {
+        source = GetComponent<AudioSource>();
+        source.PlayOneShot(respawn);
+
         shipCollision = shipInstance.GetComponent<CollisionHandler>();
         shipCollision.OnShipDestroy += ShipCollision_OnShipDestroy;
+        shipCollision.Setup(source);
 
         IsAlive = true;
     }
@@ -22,15 +32,20 @@ public class ShipManager
     private void ShipCollision_OnShipDestroy()
     {
         IsAlive = false;
+        lives--;
+        GameManager.Instance.UpdateHUDLives(lives);
     }
 
     public void ResetShip()
-    {
-        shipInstance.transform.position = new Vector3(0, 0, 0);
-        shipInstance.transform.rotation = Quaternion.identity;
+    {        
+        this.lives = 3;
+        GameManager.Instance.UpdateHUDLives(lives);
+    }
 
-        shipInstance.SetActive(false);
-        shipInstance.SetActive(true);
+    public void SpawnShip()
+    {
+        shipInstance = Instantiate(shipPrefab, Vector3.zero, Quaternion.identity);        
+        Setup();
     }
 
     public bool IsAlive { get; set; }

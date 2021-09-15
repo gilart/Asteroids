@@ -27,6 +27,11 @@ public abstract class InputBase : MonoBehaviour
         }        
     }
 
+    protected void StopMoving()
+    {
+        shipMovement.StopMoving();
+    }
+
     protected void Rotate(float rotationThisFrame)
     {
         if (shipMovement != null)
