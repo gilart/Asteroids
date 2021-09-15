@@ -7,7 +7,13 @@ public class ShipMovement : MonoBehaviour
 {
     [SerializeField] float mainThrust = 100;
     [SerializeField] float rotationThrust = 100;
-    [SerializeField] Rigidbody rb;
+
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = this.GetComponent<Rigidbody>();
+    }
 
     public void Move()
     {

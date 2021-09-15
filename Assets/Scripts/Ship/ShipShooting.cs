@@ -6,14 +6,12 @@ using UnityEngine;
 public class ShipShooting : MonoBehaviour
 {
     [SerializeField] Transform shootingSpot;
+    [SerializeField] GameObject bulletPrefab;
 
     public void Shoot()
     {
-        GameObject bullet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        bullet.transform.position = this.shootingSpot.position;
-        bullet.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        Rigidbody rb = bullet.AddComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.AddForce(this.transform.up * 350f);
+        GameObject bullet = Instantiate(bulletPrefab, shootingSpot.position, shootingSpot.rotation);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();        
+        rb.AddForce(this.transform.up * 550f);
     }
 }

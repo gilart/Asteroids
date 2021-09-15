@@ -6,27 +6,41 @@ using UnityEngine;
 [RequireComponent(typeof(ShipShooting))]
 public abstract class InputBase : MonoBehaviour
 {
-    [SerializeField] protected ShipMovement shipMovement;
-    [SerializeField] protected ShipShooting shipShooting;
+    protected ShipMovement shipMovement;
+    protected ShipShooting shipShooting;
+
+    private void Start()
+    {
+        shipMovement = this.GetComponent<ShipMovement>();
+        shipShooting = this.GetComponent<ShipShooting>();
+    }
 
     protected abstract void ProcessThurst();
     protected abstract void ProcessRotation();
-
     protected abstract void ProcessShooting();
 
     protected void Move()
     {
-        shipMovement.Move();
+        if(shipMovement != null)
+        {
+            shipMovement.Move();
+        }        
     }
 
     protected void Rotate(float rotationThisFrame)
     {
-        shipMovement.Rotate(rotationThisFrame);
+        if (shipMovement != null)
+        {
+            shipMovement.Rotate(rotationThisFrame);
+        }        
     }
 
     protected void Shoot()
     {
-        shipShooting.Shoot();
+        if(shipShooting != null)
+        {
+            shipShooting.Shoot();
+        }        
     }
 
     private void Update()

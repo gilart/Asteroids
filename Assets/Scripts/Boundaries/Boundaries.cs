@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Boundaries : MonoBehaviour
 {
-    public Camera MainCamera;
+    private Camera MainCamera;
     public Vector2 screenBounds;
 
     void Start()
     {
+        MainCamera = Camera.main;
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));        
     }
 
