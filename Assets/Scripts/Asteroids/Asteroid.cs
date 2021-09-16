@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
@@ -8,22 +6,28 @@ public class Asteroid : MonoBehaviour
     public int score;
     public float speed;
 
-    public event Action<Asteroid> OnAsteroidDestroy;
-
     private Vector3 dir;
 
-    AudioSource source;
-    [SerializeField] AudioClip clip;
-    [SerializeField] ParticleSystem Explosion;
+    public event Action<Asteroid> OnAsteroidDestroy;
+
+    [SerializeField] FloatValue Score;
+
+    CollisionHandler collisionHandler;
 
     private void Start()
     {
-        source = GetComponent<AudioSource>();
+        collisionHandler = GetComponent<CollisionHandler>();
+        collisionHandler.OnObjectDestroy += CollisionHandler_OnObjectDestroy;
 
         do
         {
             dir = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
         } while (dir == Vector3.zero);
+    }
+
+    private void CollisionHandler_OnObjectDestroy()
+    {
+        BeforeDestroy();
     }
 
     protected virtual void Move()
@@ -38,24 +42,8 @@ public class Asteroid : MonoBehaviour
 
     public virtual void BeforeDestroy()
     {
-        AudioSource.PlayClipAtPoint(clip, transform.position);
+        Score.Value += score;
 
-        Explosion.Play();
-        Explosion.transform.parent = null;
-
-        GameManager.Instance.UpdateHUDScore(score);
         OnAsteroidDestroy?.Invoke(this);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        BeforeDestroy();
-        Destroy(gameObject);
-    }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        BeforeDestroy();
-        Destroy(gameObject);
     }
 }

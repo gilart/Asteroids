@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3603101172181778866}
   - component: {fileID: 168356325171997418}
   - component: {fileID: -3283419438717299012}
+  - component: {fileID: 6512849892768916487}
   m_Layer: 6
   m_Name: Big
   m_TagString: Untagged
@@ -62,8 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 3
   speed: 3
-  clip: {fileID: 8300000, guid: 8a5da48f2063edc498f2184b0ede71a8, type: 3}
-  Explosion: {fileID: 5284444008469624691}
+  Score: {fileID: 11400000, guid: d112284d805225b49a53007b395901cd, type: 2}
   ObjectToSpawn: {fileID: 4159669162010912275, guid: bf39dc56203aeaf4ea1e869684f506ac, type: 3}
 --- !u!114 &-3283419438717299012
 MonoBehaviour:
@@ -78,6 +78,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenBounds: {x: 0, y: 0}
+--- !u!114 &6512849892768916487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3603101172181778877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338c2a3c614edaa4abf0cf035589c60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 8300000, guid: 8a5da48f2063edc498f2184b0ede71a8, type: 3}
+  explosionParticle: {fileID: 5284444008469624691}
 --- !u!1001 &690486696
 PrefabInstance:
   m_ObjectHideFlags: 0

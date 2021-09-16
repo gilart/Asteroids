@@ -43,3 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a659df5945c5be49b861c57afceee30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroidsSpawner: {fileID: 0}
+  shipManager: {fileID: 0}
+  highscore: {fileID: 11400000, guid: 6ba342e8f5d24a247ade4dd4ed839d60, type: 2}
+  score: {fileID: 11400000, guid: d112284d805225b49a53007b395901cd, type: 2}
+  level: {fileID: 11400000, guid: 43ef3cc981b8d534bbb7dcd6474db9a2, type: 2}
+  HUD: {fileID: 0}
+  GameOverMenu: {fileID: 0}
+  music: {fileID: 0}

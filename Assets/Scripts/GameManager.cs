@@ -50,53 +50,28 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    private int level = 0;
+    //private int level = 0;
     private bool isDevice = false;
 
     [SerializeField] private AsteroidsSpawner asteroidsSpawner;
     [SerializeField] private ShipManager shipManager;
+
+    //Scriptable Objects
     [SerializeField] private FloatValue highscore;
+    [SerializeField] private FloatValue score;
+    [SerializeField] private FloatValue level;
 
     //UI
-    [SerializeField] private GameObject HUD;
-    [SerializeField] private GameObject GameOverMenu;
-    //HUD
-    [SerializeField] private Text HUDscore;
-    [SerializeField] private Text HUDlives;
-    [SerializeField] private Text HUDlevel;
+    [SerializeField] private HUDController HUD;
+    [SerializeField] private GameMenu GameOverMenu;
+
     //Music
     [SerializeField] MusicController music;
 
-    public int Score { get; set; }
-    public int Highscore { get; set; }
-
-    public void UpdateHUDLives(int lives)
-    {
-        this.HUDlives.text = lives.ToString();
-    }
-
-    public void UpdateHUDLevel(int level)
-    {
-        this.HUDlevel.text = level.ToString();
-    }
-
-    public void UpdateHUDScore(int score)
-    {
-        this.Score += score;
-        this.HUDscore.text = Score.ToString();
-
-        if(Score > Highscore)
-        {
-            highscore.Value = Score;
-        }
-    }
-
     private void ResetUI()
     {
-        level = 0;
-        UpdateHUDLevel(level);
-        Score = 0;
-        UpdateHUDScore(Score);
+        level.Value = 0;
+        score.Value = 0;
         shipManager.ResetShip();
     }
 
@@ -112,6 +87,11 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        if(!isDevice)
+        {
+            HUD.HideTouchesComponents();
+        }
+        
         music.PlayGameMusic();
         ResetUI();
         StartCoroutine(GameLoop());
@@ -134,8 +114,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            HUD.SetActive(false);
-            GameOverMenu.SetActive(true);
+            HUD.Toggle(false);
+            GameOverMenu.Toggle(true);
             music.PlayMenuMusic();
         }
         
@@ -143,7 +123,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundStarting()
     {      
-        HUD.SetActive(true);        
+        HUD.Toggle(true);        
 
         if(!shipManager.IsAlive)
         {
@@ -151,11 +131,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            level++;
-            UpdateHUDLevel(level);
+            level.Value++;
         }
 
-        asteroidsSpawner.SpawnAsteroidsBasedOnLevel(level);
+        asteroidsSpawner.SpawnAsteroidsBasedOnLevel(level.Value);
 
         yield return null;
     }    

@@ -25,10 +25,10 @@ public class AsteroidsSpawner : MonoBehaviour
         SpawnAsteroids(asteroidsAmount, objectToSpawn, position);
     }
 
-    public void SpawnAsteroidsBasedOnLevel(int level)
+    public void SpawnAsteroidsBasedOnLevel(float level)
     {
         int asteroidsAmount = HowManyAsteroindsToSpawn();
-        SpawnAsteroids(asteroidsAmount + level, bigAsteroidPrefab);
+        SpawnAsteroids(asteroidsAmount + (int)level, bigAsteroidPrefab);
     }
 
     private void SpawnAsteroids(int asteroidsAmount, GameObject objectToSpawn, Vector3 pos)

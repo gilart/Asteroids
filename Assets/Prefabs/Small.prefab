@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 587519104945810273}
   - component: {fileID: 587519104945810272}
   - component: {fileID: 3318373741627010366}
+  - component: {fileID: 6715369621490808919}
   m_Layer: 6
   m_Name: Small
   m_TagString: Untagged
@@ -62,8 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 1
   speed: 7
-  clip: {fileID: 8300000, guid: 8a5da48f2063edc498f2184b0ede71a8, type: 3}
-  Explosion: {fileID: 198656289495415686}
+  Score: {fileID: 11400000, guid: d112284d805225b49a53007b395901cd, type: 2}
 --- !u!114 &3318373741627010366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +77,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenBounds: {x: 0, y: 0}
+--- !u!114 &6715369621490808919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587519104945810279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338c2a3c614edaa4abf0cf035589c60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 8300000, guid: 8a5da48f2063edc498f2184b0ede71a8, type: 3}
+  explosionParticle: {fileID: 198656289495415686}
 --- !u!1001 &1928949608
 PrefabInstance:
   m_ObjectHideFlags: 0

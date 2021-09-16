@@ -11,7 +11,8 @@ public class ShipManager : MonoBehaviour
 
     [SerializeField] private GameObject shipPrefab;
 
-    [SerializeField] private int lives = 3;
+    [SerializeField] private int baseValuelives = 3;
+    [SerializeField] FloatValue lives;
 
     //SFX
     [SerializeField] private AudioClip respawn;
@@ -23,8 +24,7 @@ public class ShipManager : MonoBehaviour
         source.PlayOneShot(respawn);
 
         shipCollision = shipInstance.GetComponent<CollisionHandler>();
-        shipCollision.OnShipDestroy += ShipCollision_OnShipDestroy;
-        shipCollision.Setup(source);
+        shipCollision.OnObjectDestroy += ShipCollision_OnShipDestroy;
 
         if(isDevice)
         {
@@ -42,14 +42,12 @@ public class ShipManager : MonoBehaviour
     private void ShipCollision_OnShipDestroy()
     {
         IsAlive = false;
-        lives--;
-        GameManager.Instance.UpdateHUDLives(lives);
+        lives.Value--;
     }
 
     public void ResetShip()
     {        
-        this.lives = 3;
-        GameManager.Instance.UpdateHUDLives(lives);
+        this.lives.Value = baseValuelives;
     }
 
     public void SpawnShip(bool isDevice)
@@ -59,5 +57,5 @@ public class ShipManager : MonoBehaviour
     }
 
     public bool IsAlive { get; set; }
-    public bool HasLives { get { return lives != 0; } }    
+    public bool HasLives { get { return lives.Value != 0; } }    
 }

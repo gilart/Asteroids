@@ -1,28 +1,30 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
-    public event Action OnShipDestroy;
+    public event Action OnObjectDestroy;
     [SerializeField] AudioClip explosion;
     [SerializeField] ParticleSystem explosionParticle;
-    AudioSource source;
 
-    public void Setup(AudioSource source)
+    private void BeforeDestroy()
     {
-        this.source = source;
-    }
+        OnObjectDestroy?.Invoke();
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        OnShipDestroy?.Invoke();
-
-        source.PlayOneShot(explosion);
+        AudioSource.PlayClipAtPoint(explosion, transform.position);
         explosionParticle.Play();
         explosionParticle.transform.parent = null;
 
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        BeforeDestroy();        
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        BeforeDestroy();
     }
 }

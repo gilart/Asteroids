@@ -11,12 +11,12 @@ public class TouchesInput : InputBase
     private bool buttonClicked;
 
     protected override void Start()
-    {
+    {        
         base.Start();
 
         fixedJoystick = FindObjectOfType<FixedJoystick>();
         actionButton = GameObject.FindGameObjectWithTag("ActionButton").GetComponent<Button>();
-        actionButton.onClick.AddListener(OnActionButtonClicked);
+        actionButton.onClick.AddListener(OnActionButtonClicked);        
     }
 
     private void OnActionButtonClicked()
