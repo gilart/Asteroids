@@ -9,7 +9,7 @@ public abstract class InputBase : MonoBehaviour
     protected ShipMovement shipMovement;
     protected ShipShooting shipShooting;
 
-    private void Start()
+    protected virtual void Start()
     {
         shipMovement = this.GetComponent<ShipMovement>();
         shipShooting = this.GetComponent<ShipShooting>();

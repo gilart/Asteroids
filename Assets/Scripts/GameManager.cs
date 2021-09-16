@@ -28,6 +28,16 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        //System check
+        if(SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            isDevice = true;
+        }
+        else
+        {
+            isDevice = false;
+        }
     }
 
     private void OnDestroy()
@@ -41,9 +51,11 @@ public class GameManager : MonoBehaviour
     #endregion
 
     private int level = 0;
+    private bool isDevice = false;
 
     [SerializeField] private AsteroidsSpawner asteroidsSpawner;
     [SerializeField] private ShipManager shipManager;
+    [SerializeField] private FloatValue highscore;
 
     //UI
     [SerializeField] private GameObject HUD;
@@ -75,7 +87,7 @@ public class GameManager : MonoBehaviour
 
         if(Score > Highscore)
         {
-            Highscore = Score;
+            highscore.Value = Score;
         }
     }
 
@@ -95,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnShip()
     {
-        shipManager.SpawnShip();
+        shipManager.SpawnShip(isDevice);
     }
 
     public void StartGame()
@@ -164,6 +176,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator RoundEnding()
     {
         asteroidsSpawner.RemoveAsteroids();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);        
     }
 }

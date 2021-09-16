@@ -52,4 +52,10 @@ public class Asteroid : MonoBehaviour
         BeforeDestroy();
         Destroy(gameObject);
     }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        BeforeDestroy();
+        Destroy(gameObject);
+    }
 }

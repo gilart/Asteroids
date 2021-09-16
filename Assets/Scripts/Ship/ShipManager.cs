@@ -17,7 +17,7 @@ public class ShipManager : MonoBehaviour
     [SerializeField] private AudioClip respawn;
     AudioSource source;
 
-    public void Setup()
+    public void Setup(bool isDevice)
     {
         source = GetComponent<AudioSource>();
         source.PlayOneShot(respawn);
@@ -25,6 +25,16 @@ public class ShipManager : MonoBehaviour
         shipCollision = shipInstance.GetComponent<CollisionHandler>();
         shipCollision.OnShipDestroy += ShipCollision_OnShipDestroy;
         shipCollision.Setup(source);
+
+        if(isDevice)
+        {
+            shipInstance.GetComponent<KeyboardInput>().enabled = false;
+        }
+        else
+        {
+            shipInstance.GetComponent<TouchesInput>().enabled = false;
+        }
+        
 
         IsAlive = true;
     }
@@ -42,10 +52,10 @@ public class ShipManager : MonoBehaviour
         GameManager.Instance.UpdateHUDLives(lives);
     }
 
-    public void SpawnShip()
+    public void SpawnShip(bool isDevice)
     {
         shipInstance = Instantiate(shipPrefab, Vector3.zero, Quaternion.identity);        
-        Setup();
+        Setup(isDevice);
     }
 
     public bool IsAlive { get; set; }
