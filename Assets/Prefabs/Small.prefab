@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 1
   speed: 7
+  rotateSpeed: 40
   Score: {fileID: 11400000, guid: d112284d805225b49a53007b395901cd, type: 2}
 --- !u!114 &3318373741627010366
 MonoBehaviour:
@@ -91,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 8300000, guid: 8a5da48f2063edc498f2184b0ede71a8, type: 3}
   explosionParticle: {fileID: 198656289495415686}
+  shakePreset: {fileID: 11400000, guid: d7a93a3c6c2182b4ab29c6ca2f5c77d3, type: 2}
 --- !u!1001 &1928949608
 PrefabInstance:
   m_ObjectHideFlags: 0

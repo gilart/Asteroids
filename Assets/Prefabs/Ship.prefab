@@ -133,8 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4cf866d3df9e345b607edd150540c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingSpot: {fileID: 5175701340112970801}
-  bulletPrefab: {fileID: 8972122810165225999, guid: 4361ad21640826e46ba0d84946192c2b, type: 3}
   shoot: {fileID: 8300000, guid: f9fc58fc7d15d044f85b77f8ccf27c2d, type: 3}
   source: {fileID: 1921076430}
   bullets: {fileID: 2326957097746508460}
@@ -177,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 8300000, guid: 8a5da48f2063edc498f2184b0ede71a8, type: 3}
   explosionParticle: {fileID: 6277414157987484225}
+  shakePreset: {fileID: 11400000, guid: d7a93a3c6c2182b4ab29c6ca2f5c77d3, type: 2}
 --- !u!82 &1921076429
 AudioSource:
   m_ObjectHideFlags: 0
@@ -381,8 +380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79b84679d17461f4c8186290bd984962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedJoystick: {fileID: 0}
-  actionButton: {fileID: 0}
 --- !u!1001 &644351707
 PrefabInstance:
   m_ObjectHideFlags: 0

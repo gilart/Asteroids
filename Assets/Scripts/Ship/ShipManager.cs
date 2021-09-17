@@ -45,7 +45,7 @@ public class ShipManager : MonoBehaviour
         lives.Value--;
     }
 
-    public void ResetShip()
+    public void ResetShipLives()
     {        
         this.lives.Value = baseValuelives;
     }

@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a788211d3c8fc94eb0372d2bec09ef3, type: 3}
-  m_Name: Higscore
+  m_Script: {fileID: 11500000, guid: 955f6c9be248dc249a31bad716cc6963, type: 3}
+  m_Name: Explosion
   m_EditorClassIdentifier: 
-  value: 144
+  shakeType: 0
+  strength: 0.06
+  roughness: 20
+  fadeIn: 0.05
+  fadeOut: 0.5
+  positionInfluence: {x: 1, y: 1, z: 3}
+  rotationInfluence: {x: 20, y: 20, z: 20}

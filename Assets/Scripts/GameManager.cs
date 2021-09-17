@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     {
         level.Value = 0;
         score.Value = 0;
-        shipManager.ResetShip();
+        shipManager.ResetShipLives();
     }
 
     public void SpawnAsteroids(GameObject objectToSpawn, Vector3 position)
